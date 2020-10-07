@@ -51,7 +51,7 @@
 	<key>createdby</key>
 	<string>Eana Hufwe</string>
 	<key>description</key>
-	<string>Find a unicode character by name</string>
+	<string>Lookup and reverse lookup Unicode characters and emoji with their names.</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -84,7 +84,7 @@
 				<key>queuemode</key>
 				<integer>2</integer>
 				<key>runningsubtext</key>
-				<string>Identifying...</string>
+				<string>Identifying…</string>
 				<key>script</key>
 				<string></string>
 				<key>scriptargtype</key>
@@ -133,7 +133,7 @@
 				<key>queuemode</key>
 				<integer>2</integer>
 				<key>runningsubtext</key>
-				<string>Searching...</string>
+				<string>Searching…</string>
 				<key>script</key>
 				<string></string>
 				<key>scriptargtype</key>
@@ -163,6 +163,8 @@
 				<true/>
 				<key>clipboardtext</key>
 				<string></string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
 				<key>transient</key>
 				<false/>
 			</dict>
@@ -199,7 +201,7 @@
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Searching...</string>
+				<string>Searching…</string>
 				<key>script</key>
 				<string></string>
 				<key>scriptargtype</key>
@@ -256,6 +258,8 @@
 			<integer>125</integer>
 		</dict>
 	</dict>
+	<key>version</key>
+	<string>1.0.0</string>
 	<key>webaddress</key>
 	<string>https://1a23.com</string>
 </dict>
