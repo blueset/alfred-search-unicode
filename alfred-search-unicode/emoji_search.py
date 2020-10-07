@@ -1,4 +1,5 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
+
 """
 Search for Unicode 12.1 Emoji Descriptions
 

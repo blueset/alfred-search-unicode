@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 
 """
 Identify characters from Unicode 12.1 Descriptions
