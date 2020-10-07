@@ -10,7 +10,6 @@ import sys
 import re
 import subprocess
 import json
-import unicodedata
 
 if len(sys.argv) >= 2:
     query = sys.argv[1]

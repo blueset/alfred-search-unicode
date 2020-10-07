@@ -10,7 +10,6 @@ import sys
 import re
 import subprocess
 import json
-import unicodedata
 from pathlib import Path
 
 if len(sys.argv) >= 2:
