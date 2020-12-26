@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 
 """
 Search for Unicode 12.1 Descriptions
@@ -10,7 +10,6 @@ import sys
 import re
 import subprocess
 import json
-import unicodedata
 
 if len(sys.argv) >= 2:
     query = sys.argv[1]
