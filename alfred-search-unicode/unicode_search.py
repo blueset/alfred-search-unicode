@@ -10,42 +10,47 @@ import sys
 import re
 import subprocess
 import json
+import csv
 
 if len(sys.argv) >= 2:
     query = sys.argv[1]
 
     try:
-        out: str = subprocess.check_output(["./uni", "-q", "search", query]).decode()
+        out: str = subprocess.check_output(
+            ["./uni", "-q", "search", query, "-f",
+                "%(char q),%(cpoint q),%(dec q),%(name q),%(cat q)"]
+        ).decode()
 
         out = out.strip().splitlines()
     except subprocess.CalledProcessError:
         out = []
 
     if re.match(r"((U\+)?[0-9A-Fa-f]+ ?)+$", query):
-        pr_out: str = subprocess.check_output(["./uni", "-q", "print"] + query.split()).decode()
-        if "unknown codepoint" not in pr_out:
-            out = pr_out.strip().splitlines() + out
+        pr_out: str = subprocess.check_output([
+            "./uni", "-q", "print", "-f", "%(char q),%(cpoint q),%(dec q),%(name q),%(cat q)"
+        ] + query.split()).decode()
+        out = pr_out.strip().splitlines() + out
+    
+    out = list(csv.reader(out, quotechar="'"))
 else:
     out = []
 
 data = []
 
 for i in out[:20]:
-    match = re.match(
-        r"^'(.+?)' +(U\+[0-9A-F]+) +(\d+) +((?:[0-9a-f ]+?)) +(&.+?;) +(.+)$", i)
-    if not match:
-        continue
-    char, c_hex, c_int, _, _, name = match.groups()
+    char, c_hex, c_int, name, category = i
 
     disp_char = char
-    out_char = chr(int(c_int))
+    try:
+        out_char = chr(int(c_int))
+    except ValueError:
+        out_char = "�"
     name = name.title()
-    short_name = name[:name.rindex(" (")]
 
     data.append({
         "uid": f"unicode_{c_int}",
-        "title": f"{disp_char} — {short_name}",
-        "subtitle": f"{c_hex} ({c_int}) {name}",
+        "title": f"{disp_char} — {name}",
+        "subtitle": f"{c_hex} ({c_int}) {category}",
         "arg": out_char,
         "text": {
             "copy": out_char,
@@ -56,8 +61,8 @@ for i in out[:20]:
         },
         "mods": {
             "alt": {
-                "subtitle": f"Copy name: {short_name}",
-                "arg": short_name,
+                "subtitle": f"Copy name: {name}",
+                "arg": name,
                 "valid": True
             },
             "cmd": {

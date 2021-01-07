@@ -11,6 +11,7 @@ import sys
 import re
 import subprocess
 import json
+import csv
 from pathlib import Path
 
 if len(sys.argv) >= 2:
@@ -18,9 +19,11 @@ if len(sys.argv) >= 2:
 
     try:
         out: str = subprocess.check_output(
-            ["./uni", "-q", "emoji", query]).decode()
+            ["./uni", "-q", "emoji", query, "-f", "%(emoji q),%(name q),%(group q),%(subgroup q),%(cpoint q),%(cldr q)"]
+        ).decode()
 
         out = out.strip().splitlines()
+        out = list(csv.reader(out, quotechar="'"))
     except subprocess.CalledProcessError:
         out = []
 
@@ -30,18 +33,9 @@ else:
 data = []
 
 for i in out[:20]:
-    match = re.match(
-        r"^([^ ]+?) (.+?)  +(.+?)  +(.+?)$", i)
-    if not match:
-        continue
-    char, name, cat, sub_cat = match.groups()
-
-    lookup_char = char.replace('\ufe0f', '')
-    hexes = tuple(hex(ord(i))[2:].lower() for i in lookup_char)
-    lookup_sequence = "-".join(hexes)
-    uid = "_".join(hexes)
-    c_hex = " ".join(f"U+{i.upper()}" for i in hexes)
+    char, name, cat, sub_cat, cpoint, cldr = i
     name = name.title()
+    lookup_sequence = cpoint.replace("U+", "").replace(" ", "-").replace("-FE0F", "")
 
     p = Path(f"twemoji/{lookup_sequence}.png")
     if p.exists():
@@ -52,7 +46,7 @@ for i in out[:20]:
     data.append({
         "uid": f"emoji_{lookup_sequence}",
         "title": f"{char} — {name}",
-        "subtitle": f"{c_hex}: {cat}, {sub_cat}",
+        "subtitle": f"{cpoint}: {cat}, {sub_cat}, {cldr}",
         "arg": char,
         "text": {
             "copy": char,

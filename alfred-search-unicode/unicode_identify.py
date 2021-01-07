@@ -10,15 +10,18 @@ import sys
 import re
 import subprocess
 import json
+import csv
 
 if len(sys.argv) >= 2:
     query = sys.argv[1]
 
     try:
         out: str = subprocess.check_output(
-            ["./uni", "-q", "identify", query]).decode()
+            ["./uni", "-q", "identify", query, "-f", "%(char q),%(cpoint q),%(dec q),%(utf8 q),%(xml q),%(name q),%(cat q)"]
+        ).decode()
 
         out = out.strip().splitlines()
+        out = list(csv.reader(out, quotechar="'"))
     except subprocess.CalledProcessError:
         out = []
 else:
@@ -32,16 +35,11 @@ utf8s = []
 xmls = []
 
 for i in out:
-    match = re.match(
-        r"^'(.+?)' +(U\+[0-9A-F]+) +(\d+) +((?:[0-9a-f ]+?)) +(&.+?;) +(.+)$", i)
-    if not match:
-        continue
-    char, c_hex, c_int, utf8, xml, name = match.groups()
+    char, c_hex, c_int, utf8, xml, name, category = i
 
     disp_char = char
     out_char = chr(int(c_int))
     name = name.title()
-    short_name = name[:name.rindex(" (")]
 
     hexes.append(c_hex[2:])
     ints.append(c_int)
@@ -49,8 +47,8 @@ for i in out:
     xmls.append(xml)
 
     data.append({
-        "title": f"{disp_char} — {short_name}",
-        "subtitle": f"{c_hex} ({c_int}) {name}",
+        "title": f"{disp_char} — {name}",
+        "subtitle": f"{c_hex} ({c_int}) {category}",
         "arg": out_char,
         "text": {
             "copy": out_char,
@@ -61,8 +59,8 @@ for i in out:
         },
         "mods": {
             "alt": {
-                "subtitle": f"Copy name: {short_name}",
-                "arg": short_name,
+                "subtitle": f"Copy name: {name}",
+                "arg": name,
                 "valid": True
             },
             "cmd": {
