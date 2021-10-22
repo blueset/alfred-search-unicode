@@ -15,6 +15,20 @@ brew install python
 
 [Homebrew]: https://brew.sh/
 
+<details>
+  <summary>Seeing “‘uni’ cannot be opened because the developer cannot be verified”?</summary>
+  
+  It can be resolved by:
+
+  <ol>
+    <li>Open <em>Alfred Preferences > Workflows</em> section </li>
+    <li>Right-click “Search Unicode” > “Open in Finder”</li>
+    <li>Right-click the <code>uni</code> executable and choose “Open” and allow it to run, then quit Terminal or close the window</li>
+  </ol>
+  
+  Thanks <a href="https://github.com/blueset/alfred-search-unicode/issues/3">valrus (Ian McCowan)</a> for the instructions.
+</details>
+
 ## Usage
 
 ### Search character by description
