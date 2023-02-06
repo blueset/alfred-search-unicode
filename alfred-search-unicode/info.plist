@@ -226,40 +226,85 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string></string>
+	<string>Search Unicode is an Alfred 5 Workflow to lookup and reverse lookup Unicode characters and emoji with their names.</string>
 	<key>uidata</key>
 	<dict>
 		<key>045CBB72-0BC0-4BDE-AB66-7185D959EC17</key>
 		<dict>
 			<key>xpos</key>
-			<integer>555</integer>
+			<real>555</real>
 			<key>ypos</key>
-			<integer>280</integer>
+			<real>280</real>
 		</dict>
 		<key>1F19CA62-17D8-4C2A-B749-137AE6E902D1</key>
 		<dict>
 			<key>xpos</key>
-			<integer>235</integer>
+			<real>235</real>
 			<key>ypos</key>
-			<integer>270</integer>
+			<real>270</real>
 		</dict>
 		<key>9CC5C2CF-B7B6-4D99-9042-4D56C7B0D8F4</key>
 		<dict>
 			<key>xpos</key>
-			<integer>235</integer>
+			<real>235</real>
 			<key>ypos</key>
-			<integer>420</integer>
+			<real>420</real>
 		</dict>
 		<key>EB8A55A8-E3AB-46F6-B4CE-17752BD0C184</key>
 		<dict>
 			<key>xpos</key>
-			<integer>235</integer>
+			<real>235</real>
 			<key>ypos</key>
-			<integer>125</integer>
+			<real>125</real>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>people</string>
+				<key>placeholder</key>
+				<string>people,man,woman</string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Comma separated values to specify genders emoji. Possible values: all, p, people, person, m, man, men, male, w, woman, women, female</string>
+			<key>label</key>
+			<string>Gender</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>UNI_GENDER</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>none</string>
+				<key>placeholder</key>
+				<string>none,light,mediumlight,medium,mediumdark,dark</string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Comma separated values to specify skin tones of emoji. Possible values: n, none, l, light, ml, mediumlight, medium-light, m, medium, md, mediumdark, medium-dark, d, dark</string>
+			<key>label</key>
+			<string>Tone</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>UNI_TONE</string>
+		</dict>
+	</array>
 	<key>version</key>
-	<string>1.1.0</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/blueset/alfred-search-unicode/</string>
 </dict>

@@ -1,6 +1,6 @@
 # Search Unicode
 
-Search Unicode is an Alfred 4 Workflow to lookup and reverse lookup Unicode characters and emoji with their names.
+Search Unicode is an Alfred 5 Workflow to lookup and reverse lookup Unicode characters and emoji with their names.
 
 ## Download
 
@@ -56,6 +56,10 @@ The same 3 options apply here too.
 
 Type `e keywords` (ex. `e face`) to look up characters by its codepoint. Press <kbd>Return</kbd> to copy the character to clipboard (ex. `😀`)
 
+Additionally, you can choose your preferred emoji gender and skin tone in the workflow config. These settings are provided by `uni`.
+
+![Screenshot of workflow config for gender and skintones](images/e_config.png)
+
 ### Identify characters in a string
 
 ![Screenshot for command uid lenny face](images/uid_lenny.png)
@@ -75,8 +79,8 @@ For the following rows that identifies each individual characters:
 
 This workflow depends on resources from:
 
-- [arp242/uni] 1.0.0 with Unicode 12.1 Data
-- [Twemoji] 12.1.4 for emoji preview
+- [arp242/uni] 2.5.1 with Unicode 14.0
+- [Twemoji] 14.0.2 for emoji preview
 
 [arp242/uni]: https://github.com/arp242/uni
 [Twemoji]: https://twemoji.twitter.com/
@@ -84,7 +88,7 @@ This workflow depends on resources from:
 ## License
 
 ```plain
-Copyright 2019 Eana Hufwe <https://1a23.com>
+Copyright 2023 Eana Hufwe <https://1a23.com>
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

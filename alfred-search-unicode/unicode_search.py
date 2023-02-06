@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Search for Unicode 12.1 Descriptions
+Search for Unicode 14 Descriptions
 
 uni binary from: https://github.com/arp242/uni
 """
@@ -18,7 +18,7 @@ if len(sys.argv) >= 2:
     try:
         out: str = subprocess.check_output(
             ["./uni", "-q", "search", query, "-f",
-                "%(char q),%(cpoint q),%(dec q),%(name q),%(cat q)"]
+                "%(char q),%(cpoint q),%(dec q),%(name q),%(cat q)", ]
         ).decode()
 
         out = out.strip().splitlines()

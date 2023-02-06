@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 
 """
-Search for Unicode 12.1 Emoji Descriptions
+Search for Unicode 14 Emoji Descriptions
 
 uni binary from: https://github.com/arp242/uni
-Twemoji updated to 12.1.4
+Twemoji updated to 14.0.2
 """
 
 import sys
@@ -12,6 +12,7 @@ import re
 import subprocess
 import json
 import csv
+import os
 from pathlib import Path
 
 if len(sys.argv) >= 2:
@@ -19,8 +20,8 @@ if len(sys.argv) >= 2:
 
     try:
         out: str = subprocess.check_output(
-            ["./uni", "-q", "emoji", query, "-f", "%(emoji q),%(name q),%(group q),%(subgroup q),%(cpoint q),%(cldr q)"]
-        ).decode()
+            ["./uni", "-q", "emoji", query, "-f", "%(emoji q),%(name q),%(group q),%(subgroup q),%(cpoint q),%(cldr q)",
+                "-g", os.environ["UNI_GENDER"], "-t", os.environ["UNI_TONE"]]).decode()
 
         out = out.strip().splitlines()
         out = list(csv.reader(out, quotechar="'"))
