@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Search for Unicode 14 Descriptions
+Search for Unicode Descriptions
 
 uni binary from: https://github.com/arp242/uni
 """

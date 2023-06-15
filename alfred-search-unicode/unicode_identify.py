@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Identify characters from Unicode 14 Descriptions
+Identify characters from Unicode Descriptions
 
 uni binary from: https://github.com/arp242/uni
 """

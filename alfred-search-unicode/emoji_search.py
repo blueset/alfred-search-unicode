@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Search for Unicode 14 Emoji Descriptions
+Search for Unicode Emoji Descriptions
 
 uni binary from: https://github.com/arp242/uni
 Twemoji updated to 14.0.2
