@@ -12,23 +12,38 @@ import subprocess
 import json
 import csv
 
+
+def run_uni_with_arch(args: list[str]) -> str:
+    try:
+        return subprocess.check_output(
+            ["./uni-amd64", *args]
+        ).decode()
+    except OSError:
+        try:
+            return subprocess.check_output(
+                ["./uni-arm64", *args]
+            ).decode()
+        except OSError:
+            return ""
+        
+
 if len(sys.argv) >= 2:
     query = sys.argv[1]
 
     try:
-        out: str = subprocess.check_output(
-            ["./uni", "-q", "search", query, "-f",
+        out: str = run_uni_with_arch(
+            ["-q", "search", query, "-f",
                 "%(char q),%(cpoint q),%(dec q),%(name q),%(cat q)", ]
-        ).decode()
+        )
 
         out = out.strip().splitlines()
     except subprocess.CalledProcessError:
         out = []
 
     if re.match(r"((U\+)?[0-9A-Fa-f]+ ?)+$", query):
-        pr_out: str = subprocess.check_output([
-            "./uni", "-q", "print", "-f", "%(char q),%(cpoint q),%(dec q),%(name q),%(cat q)"
-        ] + query.split()).decode()
+        pr_out: str = run_uni_with_arch([
+            "-q", "print", "-f", "%(char q),%(cpoint q),%(dec q),%(name q),%(cat q)"
+        ] + query.split())
         out = pr_out.strip().splitlines() + out
     
     out = list(csv.reader(out, quotechar="'"))

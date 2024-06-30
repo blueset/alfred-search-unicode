@@ -79,11 +79,11 @@ For the following rows that identifies each individual characters:
 
 This workflow depends on resources from:
 
-- [arp242/uni] git+0786da3 with Unicode 15.0
-- [Twemoji] 14.0.2 for emoji preview
+- [arp242/uni] 2.7.0 with Unicode 15.1
+- [Twemoji (jdecked)] 15.1.0 for emoji preview
 
 [arp242/uni]: https://github.com/arp242/uni
-[Twemoji]: https://twemoji.twitter.com/
+[Twemoji (jdecked)]: https://github.com/jdecked/twemoji
 
 ## License
 

@@ -15,14 +15,26 @@ import csv
 import os
 from pathlib import Path
 
+
+def run_uni_with_arch(args: list[str]) -> str:
+    try:
+        return subprocess.check_output(
+            ["./uni-amd64", *args]
+        ).decode()
+    except OSError:
+        try:
+            return subprocess.check_output(
+                ["./uni-arm64", *args]
+            ).decode()
+        except OSError:
+            return ""
+        
+
 if len(sys.argv) >= 2:
     query = sys.argv[1]
 
     try:
-        out: str = subprocess.check_output(
-            ["./uni", "-q", "emoji", query, "-f", "%(emoji q),%(name q),%(group q),%(subgroup q),%(cpoint q),%(cldr q)",
-                "-g", os.environ["UNI_GENDER"], "-t", os.environ["UNI_TONE"]]).decode()
-
+        out: str = run_uni_with_arch(["-q", "emoji", query, "-f", "%(emoji q),%(name q),%(group q),%(subgroup q),%(cpoint q),%(cldr q)", "-g", os.environ["UNI_GENDER"], "-t", os.environ["UNI_TONE"]])
         out = out.strip().splitlines()
         out = list(csv.reader(out, quotechar="'"))
     except subprocess.CalledProcessError:
