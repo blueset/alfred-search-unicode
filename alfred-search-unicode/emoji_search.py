@@ -15,20 +15,7 @@ import csv
 import os
 from pathlib import Path
 
-
-def run_uni_with_arch(args: list[str]) -> str:
-    try:
-        return subprocess.check_output(
-            ["./uni-amd64", *args]
-        ).decode()
-    except OSError:
-        try:
-            return subprocess.check_output(
-                ["./uni-arm64", *args]
-            ).decode()
-        except OSError:
-            return ""
-        
+from uni import run_uni_with_arch
 
 if len(sys.argv) >= 2:
     query = sys.argv[1]

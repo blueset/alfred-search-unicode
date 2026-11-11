@@ -6,6 +6,10 @@ Search Unicode is an Alfred 5 Workflow to lookup and reverse lookup Unicode char
 
 Download it at the [release page](https://github.com/blueset/alfred-search-unicode/releases).
 
+The workflow bundles uni for both Intel (amd64) and Apple Silicon (arm64)
+Macs and automatically selects the matching binary. Rosetta is not required
+when using a native Python installation.
+
 You need to install Python 3 on your macOS in order for this to work.
 You can install that with [Homebrew] using the command below:
 
@@ -23,7 +27,7 @@ brew install python
   <ol>
     <li>Open <em>Alfred Preferences > Workflows</em> section </li>
     <li>Right-click “Search Unicode” > “Open in Finder”</li>
-    <li>Right-click the <code>uni</code> executable and choose “Open” and allow it to run, then quit Terminal or close the window</li>
+    <li>Right-click the <code>uni-amd64</code> (Intel) or <code>uni-arm64</code> (Apple Silicon) executable and choose “Open” and allow it to run, then quit Terminal or close the window</li>
   </ol>
   
   Thanks <a href="https://github.com/blueset/alfred-search-unicode/issues/3">valrus (Ian McCowan)</a> for the instructions.
@@ -79,7 +83,7 @@ For the following rows that identifies each individual characters:
 
 This workflow depends on resources from:
 
-- [arp242/uni] 2.7.0 with Unicode 15.1
+- [arp242/uni] 2.10.0 with Unicode 18.0
 - [Twemoji (jdecked)] 15.1.0 for emoji preview
 
 [arp242/uni]: https://github.com/arp242/uni
